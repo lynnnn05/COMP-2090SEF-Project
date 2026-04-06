@@ -1,53 +1,66 @@
-# 🏥 Smart Hospital: Triage & Queue Scheduling Engine
+# Course Project: COMP2090SEF / 8090SEF - Data Structures, Algorithms and Problem Solving 
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)
 ![Tkinter](https://img.shields.io/badge/GUI-Tkinter-brightgreen)
 ![Architecture](https://img.shields.io/badge/Architecture-OOP%20%7C%20SOLID-orange)
-![Algorithm](https://img.shields.io/badge/Algorithm-Multi--Tier%20Priority-red)
+![Algorithm](https://img.shields.io/badge/Algorithm-Multi--Tier_Priority_%7C_Dijkstra-red)
+ 
 
-An enterprise-grade, OOP-driven hospital triage simulation and queue management terminal. This project demonstrates advanced software design patterns by implementing a **multi-dimensional, dynamic priority scheduling algorithm**, robust polymorphic service definitions, and a real-time fault-tolerant event loop.
+An integrated software solution designed to modernize public healthcare logistics. This repository contains two distinct modules: an OOP-based hospital triage system (**Task 1**) and a graph-based optimal route navigator for ambulance dispatching (**Task 2**).
+
 
 ---
+## 📑 Table of Contents
+* [📂 Repository Structure](#repository-structure)
+* [🚀 Task 1: Smart Hospital Triage & Queue Scheduling Engine](#task-1-smart-hospital-triage--queue-scheduling-engine)
+* [🚑 Task 2: Smart Ambulance Navigator](#task-2-smart-ambulance-navigator-self-study-algorithm)
+* [💻 Quick Start & Usage](#quick-start--usage)
+* [📜 Academic Declaration](#academic-declaration)
+---
 
-## 🏛️ Deep Dive: The OOP Architecture
+## 👥 Team Members
 
+| Name | Student ID |
+| :--- | :--- |
+| **LIN Zhihong** | `[13771888]` |
+| **LIN Yuhao** | `[Member 2 ID]` |
+| **CHEN Yijun** | `[Member 3 ID]` |
+
+---
+<a id="repository-structure"></a>
+## 📂 Repository Structure
+
+```text
+📦 COMP 2090SEF Project
+ ┣ 📂 Task1/              
+ ┃ ┣ 📜 main.py           
+ ┃ ┣ 📜 interfaces.py        
+ ┃ ┣ 📜 doctor.py 
+ ┃ ┣ 📜 patient.py 
+ ┃ ┣ 📜 server.py 
+ ┃ ┗ 📜 ui.py        
+ ┣ 📂 Task2/              
+ ┃ ┣ 📜 navigator_logic.py
+ ┃ ┗ 📜 app_gui.py
+ ┗ 📜 README.md           
+```
+
+---
+<a id="task-1-smart-hospital-triage--queue-scheduling-engine"></a>
+## Task1: 🏥 Smart Hospital: Triage & Queue Scheduling Engine
+
+An OOP-driven hospital triage simulation and queue management terminal. It demonstrates advanced software design patterns by implementing a **multi-dimensional, dynamic priority scheduling algorithm**, robust polymorphic service definitions, and a real-time fault-tolerant event loop.
+
+### 🏛️ Deep Dive: The OOP Architecture
 This system is a practical implementation of the four pillars of Object-Oriented Programming (OOP), ensuring the codebase is modular, scalable, and maintainable.
 
-### 1. Abstraction (The Design Contract)
-The system utilizes an **Abstract Base Class (ABC)** to define the essential "contract" for all medical services.
-* **Implementation**: The `MedicalService` class in `interfaces.py`.
-* **Mechanism**: Using the `@abstractmethod` decorator, it mandates that any inheriting class (e.g., different types of doctors) *must* implement `get_fee()` and `process_patient()`.
-* **Logic**: This allows the UI and server to interact with any medical provider through a unified interface without needing to know the internal department logic.
+* **1. Abstraction (The Design Contract):** The system utilizes an Abstract Base Class (`MedicalService` in `interfaces.py`) to define the essential "contract". Using the `@abstractmethod` decorator, it mandates that any inheriting class must implement `get_fee()` and `process_patient()`.
+* **2. Inheritance (Hierarchical Specialization):** Code reusability is maximized through a class hierarchy. `ExpertDoctor` and `EmergencyDoctor` inherit from the `Doctor` base class, sharing common `enqueue()` logic but specializing in department-specific roles.
+* **3. Polymorphism (Dynamic Method Dispatch):** Demonstrates Method Overriding. `Doctor.get_fee()` returns 50.0, `ExpertDoctor.get_fee()` returns 150.0, and `EmergencyDoctor.get_fee()` returns 200.0. The correct fee is automatically determined at runtime.
+* **4. Encapsulation (Information Hiding):** Sensitive data like a patient's financial balance is stored as a private attribute `self.__balance`. External modules must use the `deduct_fee()` method, which performs a safety check before allowing a transaction.
 
-### 2. Inheritance (Hierarchical Specialization)
-Code reusability is maximized through a clear class hierarchy where child classes inherit and extend the functionality of the parent.
-* **Implementation**: The `Doctor` base class and its descendants in `doctor.py`.
-* **Mechanism**: `ExpertDoctor` and `EmergencyDoctor` inherit from the `Doctor` class. They use `super().__init__` to initialize common attributes like `name` and `dept` while adding specialized attributes like `title`.
-* **Logic**: All doctors share the `enqueue()` logic and the sorting mechanism, but specialize in their department-specific roles.
-
-### 3. Polymorphism (Dynamic Method Dispatch)
-The application demonstrates **Method Overriding**, where different objects respond to the same method call with unique behaviors tailored to their type.
-* **Implementation**: Overridden methods in `doctor.py`.
-* **Mechanism**: 
-    * `Doctor.get_fee()` returns a standard fee of **50.0**.
-    * `ExpertDoctor.get_fee()` returns a premium fee of **150.0**.
-    * `EmergencyDoctor.get_fee()` returns an urgent fee of **200.0**.
-* **Logic**: In `ui.py`, when a patient registers, the system calls `doctor.get_fee()`. The UI doesn't need to check the doctor's type; the correct fee is automatically determined at runtime based on the object instance.
-
-### 4. Encapsulation (Information Hiding)
-Sensitive data and internal states are shielded from external interference to maintain data integrity.
-* **Implementation**: The `Patient` class in `patient.py`.
-* **Mechanism**: The patient's financial balance is stored as a **private attribute** `self.__balance`.
-* **Logic**: External modules (like the UI) cannot directly modify the balance. Instead, they must use the `deduct_fee()` method, which performs a safety check (verifying sufficient funds) before allowing a transaction.
-
----
-
-## 🧠 Algorithmic Logic: Multi-Dimensional Triage
-
-The triage engine in `patient.py` uses a sophisticated **Tuple-Comparison Priority Algorithm**. Instead of a simple "first-come, first-served" approach, it calculates a priority tuple to determine a patient's rank.
-
-### The Priority Heuristic
-The `get_priority_tuple()` method returns a tuple: `(category, sequence)`. Python compares tuples element-by-element; if the `category` is the same, it falls back to the `sequence` (global arrival order) to ensure **FIFO stability** within tiers.
+### 🧠 Algorithmic Logic: Multi-Dimensional Triage
+The triage engine uses a sophisticated **Tuple-Comparison Priority Algorithm**. It calculates a priority tuple `(category, sequence)` to determine a patient's rank, ensuring FIFO stability within tiers.
 
 | Priority Tier | Description | Condition Trigger | Rationale |
 | :--- | :--- | :--- | :--- |
@@ -58,20 +71,17 @@ The `get_priority_tuple()` method returns a tuple: `(category, sequence)`. Pytho
 | **Tier 4** | 🚶 Standard (Walk-in)| `< 65` & `Walk-in`| Standard sequential processing. |
 | **Tier 5** | ⚠️ Missed Turn | `is_late = True` | Punitive downgrade for no-shows. |
 
----
+### ⚙️ Operational Flow: The "No-Show" Mechanism
+To mirror real-world hospital challenges, the system includes a stochastic event handler:
+1. When "Call Next Patient" is triggered, there is a **20% chance** the patient is marked as a no-show.
+2. If a no-show occurs, `mark_late()` is called, flag is set to `True`, and `seq` updates to the latest global tick.
+3. Upon re-enqueuing, the algorithm automatically pushes them to the absolute end (Tier 5).
 
-## ⚙️ Operational Flow: The "No-Show" Mechanism
-
-To mirror real-world hospital challenges, the system includes a stochastic event handler in `ui.py`.
-
-1. **Probability**: When "Call Next Patient" is triggered, there is a **20% chance** the patient will be marked as a no-show.
-2. **State Transition**: If a no-show occurs, the `mark_late()` method is called.
-3. **Dynamic Re-Ranking**: Their `is_late` flag is set to `True`, and their `seq` is updated to the latest global tick. 
-4. **Automatic Downgrade**: Upon re-enqueuing, the sorting algorithm pushes them to the absolute end of the queue (Tier 5).
+![Task 1 Demo](Task1/docs/screenshot.png) *(Please upload your Task 1 GUI screenshot here)*
 
 ---
 
-## 📂 Project Structure
+### 📂 Task1 Structure
 
 * `interfaces.py`: Defines the **Abstract Data Type (ADT)** contract.
 * `doctor.py`: Implements **Inheritance** and **Polymorphism** for medical staff.
@@ -80,14 +90,52 @@ To mirror real-world hospital challenges, the system includes a stochastic event
 * `ui.py`: The **View Layer** handling the Tkinter GUI and event orchestration.
 * `main.py`: The **Bootloader** that initializes the system.
 
----
+<a id="task-2-smart-ambulance-navigator-self-study-algorithm"></a>
+## 🚑 Task 2: Smart Ambulance Navigator (Self-Study)
 
-## 💻 Quick Start
+**Objective:** To self-study and implement an advanced Data Structure and Algorithm (strictly beyond the lecture syllabus) to solve a real-world routing problem.
+
+### 📌 Problem Definition
+When dispatching ambulances to hospitals, standard linear data structures cannot model a complex, congested city grid. This task builds a dynamic routing engine capable of navigating around traffic bottlenecks.
+
+### 🧠 Self-Study Implementation
+* **Data Structure: Weighted Graph (Adjacency List)**
+  Modeled the city map using a Graph dictionary. This handles non-linear intersections and loops, keeping space complexity highly efficient at **O(V + E)**.
+* **Algorithm: Dijkstra's Shortest Path**
+  Utilized a Greedy Strategy combined with **Edge Relaxation**. The algorithm continuously evaluates neighboring nodes to find the global optimum, successfully avoiding pre-set "congestion traps" (e.g., a direct but 40-minute jammed road).
+
+### ⏱️ Complexity Analysis
+
+| Metric | Current Implementation | Optimal Implementation (Future Work) |
+| :--- | :--- | :--- |
+| **Search Mechanism** | Standard List Traversal | Min-Priority Queue (Heap) |
+| **Time Complexity** | **O(V²)** | **O(E log V)** |
+| **Space Complexity** | **O(V + E)** | **O(V + E)** |
+
+![Task 2 Demo](Task2/docs/screenshot.png) *(Please upload your Task 2 GUI screenshot here)*
+
+---
+<a id="quick-start--usage"></a>
+## 💻 Quick Start & Usage
 
 **1. Prerequisites**
-* Python 3.8 or higher.
-* Tkinter (standard on most Python installations).
+* Python 3.x
+* `Tkinter` (Standard Python GUI library, usually pre-installed)
+* VScode or other python compilers
 
-**2. Launch**
+**2. Launch Task 1 (Hospital Triage System)**
 ```bash
 python main.py
+```
+*(Usage: Register patients using the UI and observe the multi-tier priority sorting and stochastic no-show events in the event log.)*
+
+**3. Launch Task 2 (Ambulance Navigator)**
+```bash
+python app_gui.py
+```
+*(Usage: Click the dispatch button to visualize Dijkstra's algorithm actively routing the ambulance around high-weight traffic traps to find the global optimum.)*
+
+---
+<a id="academic-declaration"></a>
+## 📜 Academic Declaration
+We declare that this project is our original work and has been developed strictly for academic assessment purposes for the COMP2090SEF course.
