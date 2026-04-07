@@ -59,7 +59,7 @@ class NavigatorGUI:
         self.hk_map.add_edge("Aberdeen", "Queen Mary Hospital", 6) # Total 31m
         
         # Extra connections for graph complexity
-        self.hk_map.add_edge("Pok Fu Lam", "Aberdeen", 20)
+        self.hk_map.add_edge("Pok Fu Lam", "Aberdeen", 22)
 
     def draw_map(self, highlight_path=[]):
         """Renders the nodes and edges, highlighting the calculated shortest path."""
