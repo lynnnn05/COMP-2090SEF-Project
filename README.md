@@ -14,7 +14,7 @@ An integrated software solution designed to modernize public healthcare logistic
 * [📂 Repository Structure](#repository-structure)
 * [🚀 Task 1: Smart Hospital Triage & Queue Scheduling Engine](#task-1-smart-hospital-triage--queue-scheduling-engine)
 * [🚑 Task 2: Smart Ambulance Navigator](#task-2-smart-ambulance-navigator-self-study-algorithm)
-* [💻 Quick Start & Usage](#quick-start--usage)
+* [💻 Quick Start & Usage](#quick-start--user guide)
 * [📜 Academic Declaration](#academic-declaration)
 ---
 
@@ -116,8 +116,8 @@ When dispatching ambulances to hospitals, standard linear data structures cannot
 ![Task 2 Demo](Task2/docs/screenshot.png) *(Please upload your Task 2 GUI screenshot here)*
 
 ---
-<a id="quick-start--usage"></a>
-## 💻 Quick Start & Usage
+<a id="quick-start--user guide"></a>
+## 💻 Quick Start & User Guide
 
 **1. Prerequisites**
 * Python 3.x
