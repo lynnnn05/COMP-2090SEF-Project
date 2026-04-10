@@ -14,6 +14,7 @@ An integrated software solution designed to modernize public healthcare logistic
 * [📂 Repository Structure](#repository-structure)
 * [🚀 Task 1: Smart Hospital Triage & Queue Scheduling Engine](#task-1-smart-hospital-triage--queue-scheduling-engine)
 * [🚑 Task 2: Smart Ambulance Navigator](#task-2-smart-ambulance-navigator-self-study-algorithm)
+* [🎬 Task 2:Introduction Video](#task-2-introduction-video)
 * [💻 Quick Start & User Guide](#quick-start--user-guide)
 * [📜 Academic Declaration](#academic-declaration)
 ---
@@ -98,6 +99,7 @@ To mirror real-world hospital challenges, the system includes a stochastic event
 
 **Objective:** To self-study and implement an advanced Data Structure and Algorithm (strictly beyond the lecture syllabus) to solve a real-world routing problem.
 
+<a id="task-2-introduction-video"></a>
 ### 🎬 Introduction Video (Click the image below to watch the introduction video)
 Welcome to the **HK Smart Ambulance Navigator**. Click the image below to watch our 5-minute project demonstration and algorithm walkthrough:
 
