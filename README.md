@@ -80,7 +80,10 @@ To mirror real-world hospital challenges, the system includes a stochastic event
 2. If a no-show occurs, `mark_late()` is called, flag is set to `True`, and `seq` updates to the latest global tick.
 3. Upon re-enqueuing, the algorithm automatically pushes them to the absolute end (Tier 5).
 
-![Task 1 Demo](task1/Task1 GUI.png)
+<div align="center">
+  <img src="./task1/Task1 GUI.png" alt="Task 2 Demo" width="800">
+</div>
+
 
 ### 📂 Task1 Structure
 
