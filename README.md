@@ -39,7 +39,8 @@ An integrated software solution designed to modernize public healthcare logistic
  ┃ ┣ 📜 doctor.py 
  ┃ ┣ 📜 patient.py 
  ┃ ┣ 📜 server.py 
- ┃ ┗ 📜 ui.py        
+ ┃ ┗ 📜 ui.py   
+ ┃ ┗ 📷Task1 GUI.png
  ┣ 📂 Task2/              
  ┃ ┣ 📜 navigator_logic.py
  ┃ ┗ 📜 app_gui.py
